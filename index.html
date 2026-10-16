@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#10111b">
+  <meta name="description" content="SHUBHRA - Hindi voice assistant">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icons/icon-192.png">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <link rel="stylesheet" href="./style.css">
+  <title>SHUBHRA AI</title>
+</head>
+<body>
+  <main class="app">
+    <header class="top">
+      <div class="avatar" aria-hidden="true">✦</div>
+      <div><p class="eyebrow">PROJECT</p><h1>SHUBHRA <span>AI</span></h1><p class="sub">Hindi voice assistant</p></div>
+      <span id="status" class="status">Ready</span>
+    </header>
+    <section class="welcome">
+      <p class="eyebrow">NAMASTE</p>
+      <h2>नमस्ते! मैं सुन रही हूँ।</h2>
+      <p>अपना सवाल लिखो या माइक दबाकर बोलो। AI जवाब के लिए Settings में अपनी compatible API endpoint configure करो।</p>
+    </section>
+    <section id="chat" class="chat" aria-live="polite">
+      <div class="bubble assistant"><b>SHUBHRA</b><p>नमस्ते! मैं तुम्हारी मदद के लिए तैयार हूँ। अभी बिना AI endpoint के मैं basic demo mode में हूँ।</p></div>
+    </section>
+    <form id="chatForm" class="composer">
+      <button type="button" id="micBtn" class="iconBtn" aria-label="बोलकर पूछें" title="बोलकर पूछें">🎙️</button>
+      <textarea id="message" rows="1" placeholder="यहाँ सवाल लिखो…" aria-label="अपना सवाल लिखें"></textarea>
+      <button type="submit" class="send">भेजें ↑</button>
+    </form>
+    <section class="tools">
+      <button type="button" id="settingsBtn" class="secondary">⚙️ AI सेटिंग्स</button>
+      <button type="button" id="voiceBtn" class="secondary">🔊 आवाज़: चालू</button>
+      <button type="button" id="installBtn" class="secondary hidden">📲 Install App</button>
+      <button type="button" id="clearBtn" class="secondary">Chat साफ़ करें</button>
+    </section>
+    <p class="note">Privacy: API endpoint पर भेजे गए सवाल उस service को मिलेंगे। API secret को public GitHub files में कभी मत डालना।</p>
+  </main>
+
+  <dialog id="settingsDialog">
+    <form method="dialog" id="settingsForm" class="settings">
+      <h2>AI सेटिंग्स</h2>
+      <p>Compatible chat-completions API endpoint, model और key दर्ज करो। Key केवल इस browser के local storage में रहेगी, लेकिन shared/public device पर save मत करना। सबसे सुरक्षित तरीका अपना private backend/proxy है।</p>
+      <label>API Endpoint
+        <input id="endpoint" type="url" placeholder="https://your-service.example/v1/chat/completions">
+      </label>
+      <label>Model
+        <input id="model" type="text" placeholder="provider-model-name">
+      </label>
+      <label>API Key
+        <input id="apiKey" type="password" autocomplete="off" placeholder="API key (optional for local endpoints)">
+      </label>
+      <label>System instruction
+        <textarea id="systemPrompt" rows="3">तुम SHUBHRA नाम की मददगार Hindi/Hinglish voice assistant हो। साफ, सही और सुरक्षित जवाब दो। अगर किसी बात का भरोसेमंद ज्ञान नहीं है तो साफ बताओ।</textarea>
+      </label>
+      <div class="dialogActions">
+        <button type="button" id="testBtn" class="secondary">Connection test</button>
+        <button type="button" id="saveSettings" class="send">Save settings</button>
+        <button type="button" id="closeSettings" class="secondary">बंद करें</button>
+      </div>
+      <p id="settingsStatus" class="settingsStatus" aria-live="polite"></p>
+    </form>
+  </dialog>
+  <script src="./app.js" defer></script>
+</body>
+</html>
